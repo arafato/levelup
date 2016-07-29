@@ -6,7 +6,6 @@ namespace Gateway.Controllers
     public class NavigationController : ApiController
     {
         [HttpGet]
-        [ActionName("next")]
         public NavigationCommand GetNextNavigationPoint(float latitude, float longitude)
         {
             return new NavigationCommand
