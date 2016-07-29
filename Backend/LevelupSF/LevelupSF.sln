@@ -7,6 +7,10 @@ Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "Application1", "Application
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway", "Gateway\Gateway.csproj", "{6EC3418A-0805-4805-A7EC-4963BF09DED5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteActor", "RouteActor\RouteActor.csproj", "{C9498183-8B96-4F67-9A62-84A661D1465B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteActor.Interfaces", "RouteActor.Interfaces\RouteActor.Interfaces.csproj", "{DA461530-1706-432C-925A-4E2D2E00AF8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -23,6 +27,14 @@ Global
 		{6EC3418A-0805-4805-A7EC-4963BF09DED5}.Debug|x64.Build.0 = Debug|x64
 		{6EC3418A-0805-4805-A7EC-4963BF09DED5}.Release|x64.ActiveCfg = Release|x64
 		{6EC3418A-0805-4805-A7EC-4963BF09DED5}.Release|x64.Build.0 = Release|x64
+		{C9498183-8B96-4F67-9A62-84A661D1465B}.Debug|x64.ActiveCfg = Debug|x64
+		{C9498183-8B96-4F67-9A62-84A661D1465B}.Debug|x64.Build.0 = Debug|x64
+		{C9498183-8B96-4F67-9A62-84A661D1465B}.Release|x64.ActiveCfg = Release|x64
+		{C9498183-8B96-4F67-9A62-84A661D1465B}.Release|x64.Build.0 = Release|x64
+		{DA461530-1706-432C-925A-4E2D2E00AF8F}.Debug|x64.ActiveCfg = Debug|x64
+		{DA461530-1706-432C-925A-4E2D2E00AF8F}.Debug|x64.Build.0 = Debug|x64
+		{DA461530-1706-432C-925A-4E2D2E00AF8F}.Release|x64.ActiveCfg = Release|x64
+		{DA461530-1706-432C-925A-4E2D2E00AF8F}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
