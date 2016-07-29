@@ -18,7 +18,7 @@ namespace Gateway
         NORTHWEST = 45
 
     }
-    public class NavigationCommand
+    public class NavigationPoint
     {
         public float Latitude { get; set; }
         public float Longitude { get; set; }
