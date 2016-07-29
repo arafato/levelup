@@ -118,7 +118,6 @@
     <Compile Include="Models\NavigationCommand.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="OwinCommunicationListener.cs" />
     <Compile Include="Gateway.cs" />
     <Compile Include="Program.cs" />
