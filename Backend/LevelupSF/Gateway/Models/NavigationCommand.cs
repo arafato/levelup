@@ -8,9 +8,10 @@ namespace Gateway
 {
     public enum Direction
     {
-        STRAIGHT = 10,
-        LEFT = 20,
-        Right = 30
+        NORTH = 10,
+        EAST = 20,
+        SOUTH = 30,
+        WEST = 40,
     }
     public class NavigationCommand
     {

@@ -10,7 +10,7 @@ namespace Gateway.Controllers
         {
             return new NavigationCommand
             {
-                Direction = Direction.STRAIGHT,
+                Direction = Direction.NORTH,
                 Latitude = 42.4242f,
                 Longitude = 84.8484f,
             };
