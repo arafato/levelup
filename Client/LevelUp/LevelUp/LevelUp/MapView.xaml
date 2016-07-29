@@ -10,5 +10,7 @@
         MapType="Hybrid"
         />-->
     <Button Text="Test" Clicked="DoSomething"></Button>
+
+    <Label x:Name="lbl_Label_label"></Label>
   </StackLayout>
 </ContentPage>
