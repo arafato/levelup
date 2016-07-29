@@ -4,10 +4,11 @@
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="LevelUp.MapView">
   <StackLayout VerticalOptions="StartAndExpand" Padding="30">
-    <maps:Map WidthRequest="320" HeightRequest="200"
+    <!--<maps:Map WidthRequest="320" HeightRequest="200"
         x:Name="MyMap"
         IsShowingUser="true"
         MapType="Hybrid"
-        />
+        />-->
+    <Button Text="Test" Clicked="DoSomething"></Button>
   </StackLayout>
 </ContentPage>
