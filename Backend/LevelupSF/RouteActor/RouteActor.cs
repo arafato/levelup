@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Actors;
 using Microsoft.ServiceFabric.Actors.Runtime;
 using Microsoft.ServiceFabric.Actors.Client;
 using RouteActor.Interfaces;
+using RouteActor.Interfaces.Entities;
+using System.Net.Http;
+using Newtonsoft.Json.Linq;
 
 namespace RouteActor
 {
@@ -21,6 +25,8 @@ namespace RouteActor
     [StatePersistence(StatePersistence.Persisted)]
     internal class RouteActor : Actor, IRouteActor
     {
+        private const string BingMapsKey = "Aqwu5og5QECPomMpIne-33shXpCHewspjoXWZM4y0dTq4xvNB8nkm0xAZUC_54u9";
+
         /// <summary>
         /// This method is called whenever an actor is activated.
         /// An actor is activated the first time any of its methods are invoked.
@@ -56,6 +62,32 @@ namespace RouteActor
             // Requests are not guaranteed to be processed in order nor at most once.
             // The update function here verifies that the incoming count is greater than the current count to preserve order.
             return this.StateManager.AddOrUpdateStateAsync("count", count, (key, value) => count > value ? count : value);
+        }
+
+        public async Task<RouteEntity> GetRoute(string tolocation)
+        {
+            return await InitializeRoute(tolocation);
+        }
+
+        private async Task<RouteEntity> InitializeRoute(string tolocation)
+        {
+            //Go to Bing check for Location?
+            HttpClient client = new HttpClient();
+            string uri = $"http://dev.virtualearth.net/REST/V1/Routes/Walking?wp.0=Eiffel%20Tower&wp.1=louvre%20museum&optmz=distance&output=json&key={BingMapsKey}";
+            //client.BaseAddress = new Uri(uri);
+            var response = await client.GetAsync(uri);
+            //TODO: Implement that stuff?
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                var value = JObject.Parse(response.Content.ReadAsStringAsync().Result);
+
+            }
+
+            //Set Route
+
+            //Return Route
+            return new RouteEntity();
         }
     }
 }

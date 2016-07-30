@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.ServiceFabric.Actors;
+using RouteActor.Interfaces.Entities;
 
 namespace RouteActor.Interfaces
 {
@@ -25,5 +26,7 @@ namespace RouteActor.Interfaces
         /// <param name="count"></param>
         /// <returns></returns>
         Task SetCountAsync(int count);
+
+        Task<RouteEntity> GetRoute(string tolocation);
     }
 }
