@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\RouteEntity.cs" />
+    <Compile Include="Entities\Waypoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IRouteActor.cs" />
   </ItemGroup>

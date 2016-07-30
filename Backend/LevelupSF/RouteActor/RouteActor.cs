@@ -120,17 +120,24 @@ namespace RouteActor
             {
                 Waypoint w = new Waypoint();
 
-                //TODO: Implement Waypoints
+                var comp = wpoint["compassDirection"].ToObject<string>();
+                w.CompassDirection = comp;
+
+                var p = wpoint["maneuverPoint"].ToList();
+                var longi = p[1].First[0];
+                var lati = p[1].First[1];
+
+                w.ManeuverPointLong = longi.ToObject<decimal>();
+                w.ManeuverPointLat = lati.ToObject<decimal>();
 
                 wpList.Add(w);
+
             }
+
+            re.Waypoints = wpList;
 
             //Return Route
             return re;
         }
-    }
-
-    public class Waypoint
-    {
     }
 }
