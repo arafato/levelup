@@ -115,7 +115,8 @@ namespace RouteActor
 
             var distancedummy = value["resourceSets"].Children()["resources"].Children()["routeLegs"].Children()["actualEnd"].Children().ToList();
 
-            List<Waypoint> wpList = new List<Waypoint>();
+            //List<Waypoint> wpList = new List<Waypoint>();
+            List<Waypoint> wpList = await this.StateManager.GetStateAsync<List<Waypoint>>("waypoints");
 
             foreach (var wpoint in waypoints)
             {
@@ -136,6 +137,8 @@ namespace RouteActor
             }
 
             re.Waypoints = wpList;
+
+            await this.StateManager.AddOrUpdateStateAsync("waypoints", wpList, (s, user) => wpList);
 
             //Return Route
             return re;
