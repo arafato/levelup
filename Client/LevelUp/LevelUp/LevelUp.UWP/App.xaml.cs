@@ -7,6 +7,8 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.SpeechRecognition;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -38,7 +40,7 @@ namespace LevelUp.UWP
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
 
 #if DEBUG
@@ -70,6 +72,11 @@ namespace LevelUp.UWP
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
+
+                StorageFile vcdStorageFile = await Package.Current.InstalledLocation.GetFileAsync(@"LevelUpCommands.xml");
+
+                await Windows.ApplicationModel.VoiceCommands.VoiceCommandDefinitionManager.InstallCommandDefinitionsFromStorageFileAsync(vcdStorageFile);
+
             }
 
             if (rootFrame.Content == null)
@@ -81,6 +88,62 @@ namespace LevelUp.UWP
             }
             // Ensure the current window is active
             Window.Current.Activate();
+        }
+
+        protected override void OnActivated(IActivatedEventArgs args)
+        {
+            base.OnActivated(args);
+
+            if (args.Kind == ActivationKind.VoiceCommand)
+            {
+                // The arguments can represent many different activation types. Cast it so we can get the
+                // parameters we care about out.
+                var commandArgs = args as VoiceCommandActivatedEventArgs;
+
+                Windows.Media.SpeechRecognition.SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
+
+                // Get the name of the voice command and the text spoken. See AdventureWorksCommands.xml for
+                // the <Command> tags this can be filled with.
+                string voiceCommandName = speechRecognitionResult.RulePath[0];
+                string textSpoken = speechRecognitionResult.Text;
+
+                // The commandMode is either "voice" or "text", and it indictes how the voice command
+                // was entered by the user.
+                // Apps should respect "text" mode by providing feedback in silent form.
+                string commandMode = this.SemanticInterpretation("commandMode", speechRecognitionResult);
+
+                switch (voiceCommandName)
+                {
+                    case "startTriptoDestination":
+                        // Access the value of the {destination} phrase in the voice command
+                        string destination = this.SemanticInterpretation("destination", speechRecognitionResult);
+                        break;
+
+                        // Create a navigation command object to pass to the page. Any object can be passed in,
+                        // here we're using a simple struct.
+                    //    navigationCommand = new ViewModel.TripVoiceCommand(
+                    //        voiceCommandName,
+                    //        commandMode,
+                    //        textSpoken,
+                    //        destination);
+
+                    //    // Set the page to navigate to for this voice command.
+                    //    navigationToPageType = typeof(View.TripDetails);
+                    //    break;
+                    //default:
+                    //    // If we can't determine what page to launch, go to the default entry point.
+                    //    navigationToPageType = typeof(View.TripListView);
+                    //    break;
+                }
+
+
+            }
+           
+        }
+
+        private string SemanticInterpretation(string interpretationKey, SpeechRecognitionResult speechRecognitionResult)
+        {
+            return speechRecognitionResult.SemanticInterpretation.Properties[interpretationKey].FirstOrDefault();
         }
 
         /// <summary>

@@ -13,26 +13,36 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RouteActor.Interfaces", "Ro
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA0F9C65-99AA-4AA6-BCFC-3A7DF433801D}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{EA0F9C65-99AA-4AA6-BCFC-3A7DF433801D}.Debug|x64.ActiveCfg = Debug|x64
 		{EA0F9C65-99AA-4AA6-BCFC-3A7DF433801D}.Debug|x64.Build.0 = Debug|x64
 		{EA0F9C65-99AA-4AA6-BCFC-3A7DF433801D}.Debug|x64.Deploy.0 = Debug|x64
+		{EA0F9C65-99AA-4AA6-BCFC-3A7DF433801D}.Release|Any CPU.ActiveCfg = Release|x64
 		{EA0F9C65-99AA-4AA6-BCFC-3A7DF433801D}.Release|x64.ActiveCfg = Release|x64
 		{EA0F9C65-99AA-4AA6-BCFC-3A7DF433801D}.Release|x64.Build.0 = Release|x64
 		{EA0F9C65-99AA-4AA6-BCFC-3A7DF433801D}.Release|x64.Deploy.0 = Release|x64
+		{6EC3418A-0805-4805-A7EC-4963BF09DED5}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{6EC3418A-0805-4805-A7EC-4963BF09DED5}.Debug|x64.ActiveCfg = Debug|x64
 		{6EC3418A-0805-4805-A7EC-4963BF09DED5}.Debug|x64.Build.0 = Debug|x64
+		{6EC3418A-0805-4805-A7EC-4963BF09DED5}.Release|Any CPU.ActiveCfg = Release|x64
 		{6EC3418A-0805-4805-A7EC-4963BF09DED5}.Release|x64.ActiveCfg = Release|x64
 		{6EC3418A-0805-4805-A7EC-4963BF09DED5}.Release|x64.Build.0 = Release|x64
+		{C9498183-8B96-4F67-9A62-84A661D1465B}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{C9498183-8B96-4F67-9A62-84A661D1465B}.Debug|x64.ActiveCfg = Debug|x64
 		{C9498183-8B96-4F67-9A62-84A661D1465B}.Debug|x64.Build.0 = Debug|x64
+		{C9498183-8B96-4F67-9A62-84A661D1465B}.Release|Any CPU.ActiveCfg = Release|x64
 		{C9498183-8B96-4F67-9A62-84A661D1465B}.Release|x64.ActiveCfg = Release|x64
 		{C9498183-8B96-4F67-9A62-84A661D1465B}.Release|x64.Build.0 = Release|x64
+		{DA461530-1706-432C-925A-4E2D2E00AF8F}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{DA461530-1706-432C-925A-4E2D2E00AF8F}.Debug|x64.ActiveCfg = Debug|x64
 		{DA461530-1706-432C-925A-4E2D2E00AF8F}.Debug|x64.Build.0 = Debug|x64
+		{DA461530-1706-432C-925A-4E2D2E00AF8F}.Release|Any CPU.ActiveCfg = Release|x64
 		{DA461530-1706-432C-925A-4E2D2E00AF8F}.Release|x64.ActiveCfg = Release|x64
 		{DA461530-1706-432C-925A-4E2D2E00AF8F}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection

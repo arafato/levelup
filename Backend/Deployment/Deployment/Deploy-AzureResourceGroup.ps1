@@ -3,8 +3,8 @@
 #Requires -Module Azure.Storage
 
 Param(
-    [string] [Parameter(Mandatory=$true)] $ResourceGroupLocation,
-    [string] $ResourceGroupName = 'Deployment',
+    [string] $ResourceGroupLocation = 'westeurope',
+    [string] $ResourceGroupName = 'HackCluster',
     [switch] $UploadArtifacts,
     [string] $StorageAccountName,
     [string] $StorageContainerName = $ResourceGroupName.ToLowerInvariant() + '-stageartifacts',

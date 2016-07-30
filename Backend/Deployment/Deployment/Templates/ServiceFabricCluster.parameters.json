@@ -2,17 +2,29 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "clusterLocation": {
+            "value": "westeurope"
+        },
+        "clusterName": {
+            "value": "HackServer"
+        },
+        "computeLocation": {
+            "value": "westeurope"
+        },
         "adminUserName": {
-            "value": null
+            "value": "nudelsuppe"
         },
-        "certificateThumbprint": {
-            "value": null
+        "dnsName": {
+            "value": "hackclusterup"
         },
-        "sourceVaultResourceId": {
-            "value": null
+        "vmNodeType0Name": {
+            "value": "prod"
         },
-        "certificateUrlValue": {
-            "value": null
+        "vmNodeType0Size": {
+            "value": "Standard_D2_v2"
+        },
+        "vmStorageAccountName": {
+            "value": "sotrage"
         }
-    }
+   }
 }
