@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+  <CommandSet xml:lang="en-us" Name="LevelUpCommandSet_en-us">
+    <AppName> LevelUp </AppName>
+    <Example> Take me to Seattle </Example>
+
+    <Command Name="startTriptoDestination">
+      <Example> Take me to Seattle </Example>
+      <ListenFor RequireAppName="BeforeOrAfterPhrase"> take me to {destination} </ListenFor>
+      <Feedback> Let's go to {destination} </Feedback>
+      <Navigate/>
+      <!--<VoiceCommandService Target="LevelUpCommandService"/>-->
+    </Command>
+
+    <PhraseList Label="destination">
+      <Item>Seattle</Item>
+      <Item>Fuerstenfeld</Item>
+      <Item>Melbourne</Item>
+      <Item>Yosemite National Park</Item>
+    </PhraseList>
+  </CommandSet>
+
+
+</VoiceCommands>

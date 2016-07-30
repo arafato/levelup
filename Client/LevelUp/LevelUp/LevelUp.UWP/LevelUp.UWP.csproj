@@ -108,6 +108,9 @@
     <None Include="Windows_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="LevelUpCommands.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -128,6 +131,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\VoiceCommandService\VoiceCommandService.csproj">
+      <Project>{794e7959-6842-4f99-83f5-a433b84d83ed}</Project>
+      <Name>VoiceCommandService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LevelUp\LevelUp.csproj">
       <Name>LevelUp</Name>
     </ProjectReference>
