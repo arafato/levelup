@@ -64,30 +64,60 @@ namespace RouteActor
             return this.StateManager.AddOrUpdateStateAsync("count", count, (key, value) => count > value ? count : value);
         }
 
-        public async Task<RouteEntity> GetRoute(string tolocation)
+        public async Task<RouteEntity> GetRoute(string tolocation, Guid idGuid)
         {
-            return await InitializeRoute(tolocation);
+            return await InitializeRoute(tolocation, idGuid);
         }
 
-        private async Task<RouteEntity> InitializeRoute(string tolocation)
+        private async Task<RouteEntity> InitializeRoute(string tolocation, Guid idGuid)
         {
             //Go to Bing check for Location?
             HttpClient client = new HttpClient();
             string uri = $"http://dev.virtualearth.net/REST/V1/Routes/Walking?wp.0=Eiffel%20Tower&wp.1=louvre%20museum&optmz=distance&output=json&key={BingMapsKey}";
             //client.BaseAddress = new Uri(uri);
-            var response = await client.GetAsync(uri);
-            //TODO: Implement that stuff?
+            var response = await client.GetStringAsync(uri);
 
-            if (response.StatusCode == HttpStatusCode.OK)
+            var value = JObject.Parse(response);
+            IList<JToken> waypoints = value["resourceSets"].Children()["resources"].Children()["routeLegs"].Children()["itineraryItems"].Values().ToList();
+
+            RouteEntity re = new RouteEntity();
+            re.Id = idGuid;
+
+            decimal coordinate;
+
+            var dummy = value["resourceSets"].Children()["resources"].Children()["routeLegs"].Children()["actualStart"].Children().ToList();
+            var longt = dummy[1].First[0];
+            var latit = dummy[1].First[1];
+            if (longt.Type == JTokenType.Float || longt.Type == JTokenType.Integer)
             {
-                var value = JObject.Parse(response.Content.ReadAsStringAsync().Result);
+                re.StartLongitude = longt.ToObject<decimal>();
+            }
+            if (latit.Type == JTokenType.Float || latit.Type == JTokenType.Integer)
+            {
+                re.StartLatitude = latit.ToObject<decimal>();
+            }
+
+            var enddummy = value["resourceSets"].Children()["resources"].Children()["routeLegs"].Children()["actualEnd"].Children().ToList();
+            var longe = dummy[1].First[0];
+            var latie = dummy[1].First[1];
+            if (longe.Type == JTokenType.Float || longe.Type == JTokenType.Integer)
+            {
+                re.EndLongitue = longe.ToObject<decimal>();
+            }
+            if (latie.Type == JTokenType.Float || latie.Type == JTokenType.Integer)
+            {
+                re.EndLatitude = latit.ToObject<decimal>();
+            }
+
+            var distancedummy = value["resourceSets"].Children()["resources"].Children()["routeLegs"].Children()["actualEnd"].Children().ToList();
+
+            foreach (var wpoint in waypoints)
+            {
 
             }
 
-            //Set Route
-
             //Return Route
-            return new RouteEntity();
+            return re;
         }
     }
 }

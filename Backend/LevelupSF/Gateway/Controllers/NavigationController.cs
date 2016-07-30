@@ -33,7 +33,7 @@ namespace Gateway.Controllers
             //unigque Actor
             var id = Guid.NewGuid();
             var proxy = ActorProxy.Create<IRouteActor>(new ActorId(id), "fabric:/Application1");
-            var initializeRoute = proxy.GetRoute(destination).Result;
+            var initializeRoute = proxy.GetRoute(destination, id).Result;
             if (initializeRoute != null) return initializeRoute;
             throw new HttpException("Bad Request");
         }
