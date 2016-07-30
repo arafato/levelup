@@ -27,13 +27,13 @@ namespace Gateway.Controllers
         }
 
         [HttpGet]
-        private RouteEntity InitializeRoute(float lat, float longitude, string destination)
+        public RouteEntity InitializeRoute(float longitude, float latitude, string destination)
         {
             //TODO: Create if not exists to location 
             //unigque Actor
             var id = Guid.NewGuid();
             var proxy = ActorProxy.Create<IRouteActor>(new ActorId(id), "fabric:/Application1");
-            var initializeRoute = proxy.GetRoute(destination, id).Result;
+            var initializeRoute = proxy.GetRoute(longitude, latitude, destination, id).Result;
             if (initializeRoute != null) return initializeRoute;
             throw new HttpException("Bad Request");
         }

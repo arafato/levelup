@@ -64,15 +64,18 @@ namespace RouteActor
             return this.StateManager.AddOrUpdateStateAsync("count", count, (key, value) => count > value ? count : value);
         }
 
-        public async Task<RouteEntity> GetRoute(string tolocation, Guid idGuid)
+        public async Task<RouteEntity> GetRoute(float longitude, float latitude, string tolocation, Guid idGuid)
         {
-            return await InitializeRoute(tolocation, idGuid);
+            return await InitializeRoute(longitude,latitude, tolocation, idGuid);
         }
 
-        private async Task<RouteEntity> InitializeRoute(string tolocation, Guid idGuid)
+        private async Task<RouteEntity> InitializeRoute(float longitude, float latitude, string tolocation, Guid idGuid)
         {
             //Go to Bing check for Location?
             HttpClient client = new HttpClient();
+
+            //TODO: Set startpoint and endpoint
+
             string uri = $"http://dev.virtualearth.net/REST/V1/Routes/Walking?wp.0=Eiffel%20Tower&wp.1=louvre%20museum&optmz=distance&output=json&key={BingMapsKey}";
             //client.BaseAddress = new Uri(uri);
             var response = await client.GetStringAsync(uri);
@@ -111,13 +114,23 @@ namespace RouteActor
 
             var distancedummy = value["resourceSets"].Children()["resources"].Children()["routeLegs"].Children()["actualEnd"].Children().ToList();
 
+            List<Waypoint> wpList = new List<Waypoint>();
+
             foreach (var wpoint in waypoints)
             {
+                Waypoint w = new Waypoint();
 
+                //TODO: Implement Waypoints
+
+                wpList.Add(w);
             }
 
             //Return Route
             return re;
         }
+    }
+
+    public class Waypoint
+    {
     }
 }
