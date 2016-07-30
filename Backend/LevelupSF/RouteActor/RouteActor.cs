@@ -40,7 +40,8 @@ namespace RouteActor
             // Any serializable object can be saved in the StateManager.
             // For more information, see http://aka.ms/servicefabricactorsstateserialization
 
-            return this.StateManager.TryAddStateAsync("count", 0);
+            this.StateManager.TryAddStateAsync("waypoints", new List<Waypoint>());
+            return this.StateManager.TryAddStateAsync("index", 0);
         }
 
         /// <summary>
