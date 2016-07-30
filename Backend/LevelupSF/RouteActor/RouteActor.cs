@@ -144,15 +144,15 @@ namespace RouteActor
             return re;
         }
 
-        public Waypoint GetNextWaypoint()
+        public async Task<Waypoint> GetNextWaypoint()
         {
             List<Waypoint> state = this.StateManager.GetStateAsync<List<Waypoint>>("waypoints").Result;
             var index = this.StateManager.GetStateAsync<int>("index").Result;
 
             index++;
 
-            this.StateManager.AddOrUpdateStateAsync("index", index, (s, indexs) => index);
-
+            await this.StateManager.AddOrUpdateStateAsync("index", index, (s, indexs) => index);
+            
             return state[index - 1];
         }
     }

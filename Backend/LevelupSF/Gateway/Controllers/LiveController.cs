@@ -40,7 +40,7 @@ namespace Gateway.Controllers
 
             var proxy = ActorProxy.Create<IRouteActor>(new ActorId(routId), "fabric:/Application1");
             
-            return proxy.GetNextWaypoint();
+            return proxy.GetNextWaypoint().Result;
         }
     }
 }
