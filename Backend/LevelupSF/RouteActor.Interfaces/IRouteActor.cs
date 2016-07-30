@@ -28,5 +28,7 @@ namespace RouteActor.Interfaces
         Task SetCountAsync(int count);
 
         Task<RouteEntity> GetRoute(float longitude, float latitude, string tolocation, Guid idGuid);
+
+        Waypoint GetNextWaypoint();
     }
 }

@@ -138,10 +138,22 @@ namespace RouteActor
 
             re.Waypoints = wpList;
 
-            await this.StateManager.AddOrUpdateStateAsync("waypoints", wpList, (s, user) => wpList);
+            await this.StateManager.AddOrUpdateStateAsync("waypoints", wpList, (s, wpLists) => wpList);
 
             //Return Route
             return re;
+        }
+
+        public Waypoint GetNextWaypoint()
+        {
+            List<Waypoint> state = this.StateManager.GetStateAsync<List<Waypoint>>("waypoints").Result;
+            var index = this.StateManager.GetStateAsync<int>("index").Result;
+
+            index++;
+
+            this.StateManager.AddOrUpdateStateAsync("index", index, (s, indexs) => index);
+
+            return state[index - 1];
         }
     }
 }

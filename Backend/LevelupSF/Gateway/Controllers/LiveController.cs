@@ -2,15 +2,19 @@
 using System.Web.Http;
 using Gateway.Models;
 using Microsoft.Azure;
+using Microsoft.ServiceFabric.Actors;
+using Microsoft.ServiceFabric.Actors.Client;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
+using RouteActor.Interfaces;
+using RouteActor.Interfaces.Entities;
 
 namespace Gateway.Controllers
 {
     public class LiveController : ApiController
     {
         [HttpPost]
-        public void UpdateLocation(Guid routId, float latitude, float longitude)
+        public Waypoint UpdateLocation(Guid routId, float latitude, float longitude)
         {
             var storageAccount = CloudStorageAccount.Parse(
                 CloudConfigurationManager.GetSetting("StorageConnectionString"));
@@ -33,6 +37,10 @@ namespace Gateway.Controllers
 
             // Execute the insert operation.
             table.Execute(insertOperation);
+
+            var proxy = ActorProxy.Create<IRouteActor>(new ActorId(routId), "fabric:/Application1");
+            
+            return proxy.GetNextWaypoint();
         }
     }
 }
