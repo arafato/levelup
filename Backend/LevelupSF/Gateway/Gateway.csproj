@@ -195,6 +195,7 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="Controllers\LiveController.cs" />
     <Compile Include="Models\Direction.cs" />
+    <Compile Include="Models\LocationLogEntry.cs" />
     <Compile Include="Models\NavigationPoint.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
